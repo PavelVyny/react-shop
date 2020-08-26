@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import ProductItem from './pages/ProductItem';
 import NotFound from './pages/NotFound';
 import Header from './components/globalComponents/Header';
 
@@ -20,6 +21,7 @@ const App = () => {
 						<Switch>
 							<Route exact path='/' component={Home} />
 							<Route path='/cart' component={Cart} />
+							<Route path='/product/:id' component={ProductItem} />
 							<Route component={NotFound} />
 						</Switch>
 					</Container>
