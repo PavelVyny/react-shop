@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
@@ -20,11 +20,10 @@ const Header = () => {
         </Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse className="justify-content-end">
-					<CartVidget>
-						<Nav.Link as={NavLink} to="/cart" className="shop__cart position-relative">
-							<FaShoppingCart style={{ fontSize: "26px" }} />
-						</Nav.Link>
-					</CartVidget>
+
+					<Nav.Link as={NavLink} to="/cart" className="shop__cart position-relative">
+						<FaShoppingCart style={{ fontSize: "26px" }} />
+					</Nav.Link>
 
 					{cart.length > 0 && (
 						<CartCount>${getTotals(cart).total}</CartCount>
@@ -35,10 +34,6 @@ const Header = () => {
 	);
 };
 
-const CartVidget = styled.div`
-
-
-`;
 
 const CartCount = styled.div`
   width: auto;
@@ -49,10 +44,5 @@ const CartCount = styled.div`
   align-items: center;
   color: black;
 `;
-
-
-
-
-
 
 export default Header;
