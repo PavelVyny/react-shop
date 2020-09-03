@@ -1,15 +1,14 @@
 import React from "react";
 
-const CartColumns = () => {
+const CartColumns = ({ headers }) => {
 	return (
 		<thead>
 			<tr>
-				<th className="text-center">ORIGIN</th>
-				<th className="text-center">NAME OF PRODUCT</th>
-				<th className="text-center">PRICE</th>
-				<th className="text-center">QUANTITY</th>
-				<th className="text-center">REMOVE</th>
-				<th className="text-center">TOTAL</th>
+				{headers.map(
+					(header) => <th className="text-center" key={header}>{header}</th>
+				)}
+
+
 			</tr>
 		</thead>
 	);

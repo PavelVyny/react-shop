@@ -7,13 +7,21 @@ import CartItems from "./CartItems";
 import Title from "../UI/Title";
 
 const CartList = () => {
-	const cartList = useSelector((state) => state.products.cartList);
+  const cartList = useSelector((state) => state.products.cartList);
+  const headers = [
+	  'ORIGIN', 
+	  'NAME OF PRODUCT', 
+	  'PRICE', 
+	  'QUANTITY', 
+	  'REMOVE', 
+	  'TOTAL'
+	];
 	
 	return (
     <Row className="justify-content-center">
       {cartList.length > 0 ? (
         <Table striped bordered hover size="sm">
-          <CartColumns />
+          <CartColumns headers={headers} />
           <CartItems cartList={cartList} />
         </Table>
       ) : (
