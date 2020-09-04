@@ -4,8 +4,11 @@ import {
 	GET_ORIGINS_SUCCESS,
 	GET_ORIGINS_FAILURE,
 	GET_ORIGINS_STARTED,
+	FILTER_ORIGINS_COUNTRY,
 	START_FILTRED_ORIGINS,
 	LOAD_FILTRED_ORIGINS_SUCCESS,
+	SET_SELECTED_COUNTRY,
+	SET_MAX_MIN_PRICE
 } from "./Types";
 
 
@@ -27,11 +30,11 @@ export const GET_ORIGINS_ACTION = () => {
 			});
 	};
 };
-export const GET_FILTRED_ORIGINS = selectedCountry => dispatch => {
+export const GET_FILTRED_ORIGINS = (selectedCountry = [''],price=[0,1000]) => dispatch => {
 
 	dispatch(startFiltred());
 	axios
-		.get(`https://yalantis-react-school-api.yalantis.com/api/v1/products?origins=${selectedCountry}`)
+		.get(`https://yalantis-react-school-api.yalantis.com/api/v1/products?origins=${selectedCountry}&minPrice=${price[0]}&maxPrice=${price[1]}`)
 		.then(res => {
 			dispatch(addItemsForOriginsSuccess(res.data.items));
 		})
@@ -65,5 +68,15 @@ const addOriginsFailure = error => ({
 
 const startFiltred = () => ({
 	type: START_FILTRED_ORIGINS,
+});
+
+export const setSelectedCountry = countres => ({
+	type:SET_SELECTED_COUNTRY,
+	payload: countres,
+});
+
+export const setMaxMinPrice = value => ({
+	type: SET_MAX_MIN_PRICE,
+	payload: value
 })
 

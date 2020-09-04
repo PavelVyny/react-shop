@@ -17,7 +17,6 @@ import {
 export const GET_ITEMS_ACTION = () => {
 	return dispatch => {
 		dispatch(addItemsStarted());
-
 		axios
 			.get(`https://yalantis-react-school-api.yalantis.com/api/v1/products?perPage=200`)
 			.then(res => {
