@@ -33,7 +33,7 @@ export default function (state = initialState, action) {
 			return { ...state, cartList: add(state, action.payload.id) };
 		}
 		case GET_ORIGINS_SUCCESS : {
-			return Object.assign({}, state, {countryList: action.payload});
+			return {...state, countryList: action.payload};
 		}
 		case INCREMENT_ITEM:
 			return {
@@ -42,12 +42,12 @@ export default function (state = initialState, action) {
 			};
 		case LOAD_FILTRED_ORIGINS_SUCCESS: 
 
-			return Object.assign({}, state, {items: action.payload})
+			return {...state, items: action.payload}
 		case SET_SELECTED_COUNTRY: 
 
-			return Object.assign({}, state, {selectedCountry: action.payload})
+			return {...state, selectedCountry: action.payload}
 		case SET_MAX_MIN_PRICE:
-			return Object.assign({}, state, {rangePrice: action.payload})
+			return {...state, rangePrice: action.payload} 
 		case DECREMENT_ITEM:
 			return {
 				...state,
