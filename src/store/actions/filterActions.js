@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from '../../config'
 
 import {
 	GET_ORIGINS_SUCCESS,
@@ -15,7 +16,7 @@ export const GET_ORIGINS_ACTION = () => {
 	return dispatch => {
 		dispatch(addOriginsStarted());
 		axios
-			.get(`https://yalantis-react-school-api.yalantis.com/api/v1/products-origins`)
+			.get(`${config.apiUrl}/products-origins`)
 			.then(res => {
 				const {data:{items}} = res;
 				const arr =[];
@@ -33,7 +34,7 @@ export const GET_FILTRED_ORIGINS = (selectedCountry = [''],price=[0,1000]) => di
 
 	dispatch(startFiltred());
 	axios
-		.get(`https://yalantis-react-school-api.yalantis.com/api/v1/products?origins=${selectedCountry}&minPrice=${price[0]}&maxPrice=${price[1]}`)
+		.get(`${config.apiUrl}/products?origins=${selectedCountry}&minPrice=${price[0]}&maxPrice=${price[1]}`)
 		.then(res => {
 			dispatch(addItemsForOriginsSuccess(res.data.items));
 		})

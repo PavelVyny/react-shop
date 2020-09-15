@@ -14,7 +14,7 @@ import { add, decrement, increment, remove } from "../../utils";
 
 const initialState = {
 	items: [],
-	curentItem: [],
+	curentItem: {},
 	cartList: [],
 	countryList:[],
 	selectedCountry:[],

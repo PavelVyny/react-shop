@@ -10,8 +10,10 @@ const ProductItems = () => {
 	const items = useSelector((state) => state.products.items);
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(GET_ITEMS_ACTION(),
-		dispatch(GET_ORIGINS_ACTION()));
+		dispatch(
+			GET_ITEMS_ACTION(),
+			dispatch(GET_ORIGINS_ACTION())
+		);
 	}, [dispatch]);
 
 	return (
