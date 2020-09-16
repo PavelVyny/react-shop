@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from '../../config'
 
 import {
 	GET_ITEMS_SUCCESS,
@@ -17,9 +18,8 @@ import {
 export const GET_ITEMS_ACTION = () => {
 	return dispatch => {
 		dispatch(addItemsStarted());
-
 		axios
-			.get(`https://yalantis-react-school-api.yalantis.com/api/v1/products?perPage=200`)
+			.get(`${config.apiUrl}/products?perPage=200`)
 			.then(res => {
 				dispatch(addItemsSuccess(res.data.items));
 			})
@@ -52,7 +52,7 @@ export const GET_ITEM_ACTION = (id) => {
 		dispatch(addItemStarted());
 
 		axios
-			.get(`https://yalantis-react-school-api.yalantis.com/api/v1/products/${id}`)
+			.get(`${config.apiUrl}/products/${id}`)
 			.then(res => {
 				dispatch(addItemSuccess(res.data));
 			})
