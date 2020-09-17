@@ -5,14 +5,104 @@ import {
 	GET_ITEMS_SUCCESS,
 	GET_ITEMS_FAILURE,
 	GET_ITEMS_STARTED,
+	GET_MY_ITEMS_SUCCESS,
+	GET_MY_ITEMS_FAILURE,
+	GET_MY_ITEMS_STARTED,
 	GET_ITEM_SUCCESS,
 	GET_ITEM_FAILURE,
 	GET_ITEM_STARTED,
+	CREATE_ITEM_SUCCESS,
+	CREATE_ITEM_FAILURE,
+	CREATE_ITEM_STARTED,
 	ADD_ITEM,
 	INCREMENT_ITEM,
 	DECREMENT_ITEM,
 	REMOVE_ITEM,
 } from "./Types";
+
+
+export const CREATE_ITEM_ACTION = (values) => {
+
+	return dispatch => {
+		dispatch(createItemStarted());
+		axios.post(`${config.apiUrl}/products`,
+			{
+				"product": {
+					"name": values.name,
+					"price": parseInt(`${values.price}`, 10),
+					"origin": values.origin
+				},
+			},
+			{
+				headers: {
+					'Authorization': config.token
+				},
+			}
+		).then(res => {
+			dispatch(createItemSuccess(res.data.items));
+		})
+			.catch(err => {
+				dispatch(createItemFailure(err.message));
+			});
+	};
+};
+
+const createItemSuccess = newItem => ({
+	type: CREATE_ITEM_SUCCESS,
+	payload: newItem
+});
+
+const createItemStarted = () => ({
+	type: CREATE_ITEM_STARTED
+});
+
+const createItemFailure = error => ({
+	type: CREATE_ITEM_FAILURE,
+	payload: {
+		error
+	}
+});
+
+
+
+export const GET_MY_ITEMS_ACTION = () => {
+	return dispatch => {
+		dispatch(addMyItemsStarted());
+		axios
+			.get(`${config.apiUrl}/products?perPage=200&editable=true`,
+			{
+				headers: {
+					'Authorization': config.token
+				},
+			}
+
+			)
+			.then(res => {
+				dispatch(addMyItemsSuccess(res.data.items));
+			})
+			.catch(err => {
+				dispatch(addMyItemsFailure(err.message));
+			});
+
+	};
+};
+
+const addMyItemsSuccess = items => ({
+	type: GET_MY_ITEMS_SUCCESS,
+	payload: items
+});
+
+const addMyItemsStarted = () => ({
+	type: GET_MY_ITEMS_STARTED
+});
+
+const addMyItemsFailure = error => ({
+	type: GET_MY_ITEMS_FAILURE,
+	payload: {
+		error
+	}
+});
+
 
 
 export const GET_ITEMS_ACTION = () => {

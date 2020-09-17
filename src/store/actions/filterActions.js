@@ -5,8 +5,11 @@ import {
 	GET_ORIGINS_SUCCESS,
 	GET_ORIGINS_FAILURE,
 	GET_ORIGINS_STARTED,
-	START_FILTRED_ORIGINS,
-	LOAD_FILTRED_ORIGINS_SUCCESS,
+	START_FILTRED_PRODUCTS,
+	LOAD_FILTRED_PRODUCTS_SUCCESS,
+	START_MY_FILTRED_PRODUCTS,
+	LOAD_MY_FILTRED_PRODUCTS_SUCCESS,
+	GET_MY_FILTRED_PRODUCTS_FAILURE,
 	SET_SELECTED_COUNTRY,
 	SET_MAX_MIN_PRICE
 } from "./Types";
@@ -30,7 +33,7 @@ export const GET_ORIGINS_ACTION = () => {
 			});
 	};
 };
-export const GET_FILTRED_ORIGINS = (selectedCountry = [''],price=[0,1000]) => dispatch => {
+export const GET_FILTRED_PRODUCTS = (selectedCountry = [''],price=[0,3000]) => dispatch => {
 
 	dispatch(startFiltred());
 	axios
@@ -40,13 +43,11 @@ export const GET_FILTRED_ORIGINS = (selectedCountry = [''],price=[0,1000]) => di
 		})
 		.catch(err => {
 			dispatch(addOriginsFailure(err.message));
-		});
-	
-	
+		});	
 }
 
 const addItemsForOriginsSuccess = items => ({
-	type: LOAD_FILTRED_ORIGINS_SUCCESS,
+	type: LOAD_FILTRED_PRODUCTS_SUCCESS,
 	payload: items
 });
 
@@ -67,16 +68,52 @@ const addOriginsFailure = error => ({
 });
 
 const startFiltred = () => ({
-	type: START_FILTRED_ORIGINS,
+	type: START_FILTRED_PRODUCTS,
 });
 
-export const setSelectedCountry = countres => ({
+export const setSelectedCountry = countries => ({
 	type:SET_SELECTED_COUNTRY,
-	payload: countres,
+	payload: countries,
 });
 
 export const setMaxMinPrice = value => ({
 	type: SET_MAX_MIN_PRICE,
 	payload: value
 })
+
+export const GET_MY_FILTRED_PRODUCTS = (selectedCountry = [''],price=[0,3000]) => dispatch => {
+
+	dispatch(startMyProductsFilter());
+	axios
+		.get(`${config.apiUrl}/products?origins=${selectedCountry}&minPrice=${price[0]}&maxPrice=${price[1]}&editable=true`,
+		{
+			headers: {
+				'Authorization': config.token
+			},
+		}
+		
+		)
+		.then(res => {
+			dispatch(addMyProductsFiltredSuccess(res.data.items));
+		})
+		.catch(err => {
+			dispatch(addMyIProductsFiltredFailure(err.message));
+		});	
+}
+
+const startMyProductsFilter = () => ({
+	type: START_MY_FILTRED_PRODUCTS,
+});
+
+const addMyProductsFiltredSuccess = items => ({
+	type: LOAD_MY_FILTRED_PRODUCTS_SUCCESS,
+	payload: items
+});
+
+const addMyIProductsFiltredFailure = error => ({
+	type: GET_MY_FILTRED_PRODUCTS_FAILURE,
+	payload: {
+		error
+	}
+});
 

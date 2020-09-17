@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { GET_FILTRED_PRODUCTS, setMaxMinPrice } from "../../store/actions/filterActions";
+import { GET_MY_FILTRED_PRODUCTS, setMaxMinPrice } from "../../store/actions/filterActions";
 import Slider from '@material-ui/core/Slider';
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -14,12 +14,12 @@ function ValueLabelComponent(props) {
     );
   }
 
-const PriceSlider = () => {
+const MyPriceSlider = () => {
     const itemsCountry = useSelector((state) => state.products.selectedCountry);
     const dispatch = useDispatch();
     const handleChangeSlider = (event, valuePrice) => {
         dispatch(setMaxMinPrice(valuePrice));
-        dispatch(GET_FILTRED_PRODUCTS(itemsCountry, valuePrice));
+        dispatch(GET_MY_FILTRED_PRODUCTS(itemsCountry, valuePrice));
     }
     return (
       <>
@@ -36,4 +36,4 @@ const PriceSlider = () => {
     )
 }
 
-export default PriceSlider;
+export default MyPriceSlider;
