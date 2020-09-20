@@ -9,7 +9,7 @@ const MyOriginSelect = () => {
   const rangePrice =  useSelector((state) => state.products.rangePrice);
   const dispatch = useDispatch();
   const setCountry = (value) => {
-    let arr = [];
+    const arr = [];
     if(value){
       value.forEach(item => {
         arr.push(item.value)

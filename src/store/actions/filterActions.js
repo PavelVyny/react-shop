@@ -5,10 +5,9 @@ import {
 	GET_ORIGINS_SUCCESS,
 	GET_ORIGINS_FAILURE,
 	GET_ORIGINS_STARTED,
+	GET_ITEMS_SUCCESS,
 	START_FILTRED_PRODUCTS,
-	LOAD_FILTRED_PRODUCTS_SUCCESS,
 	START_MY_FILTRED_PRODUCTS,
-	LOAD_MY_FILTRED_PRODUCTS_SUCCESS,
 	GET_MY_FILTRED_PRODUCTS_FAILURE,
 	SET_SELECTED_COUNTRY,
 	SET_MAX_MIN_PRICE
@@ -47,7 +46,7 @@ export const GET_FILTRED_PRODUCTS = (selectedCountry = [''],price=[0,3000]) => d
 }
 
 const addItemsForOriginsSuccess = items => ({
-	type: LOAD_FILTRED_PRODUCTS_SUCCESS,
+	type: GET_ITEMS_SUCCESS,
 	payload: items
 });
 
@@ -106,7 +105,7 @@ const startMyProductsFilter = () => ({
 });
 
 const addMyProductsFiltredSuccess = items => ({
-	type: LOAD_MY_FILTRED_PRODUCTS_SUCCESS,
+	type: GET_ITEMS_SUCCESS,
 	payload: items
 });
 

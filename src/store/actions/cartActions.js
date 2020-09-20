@@ -5,7 +5,6 @@ import {
 	GET_ITEMS_SUCCESS,
 	GET_ITEMS_FAILURE,
 	GET_ITEMS_STARTED,
-	GET_MY_ITEMS_SUCCESS,
 	GET_MY_ITEMS_FAILURE,
 	GET_MY_ITEMS_STARTED,
 	GET_ITEM_SUCCESS,
@@ -78,7 +77,7 @@ export const GET_MY_ITEMS_ACTION = () => {
 
 			)
 			.then(res => {
-				dispatch(addMyItemsSuccess(res.data.items));
+				dispatch(addItemsSuccess(res.data.items));
 			})
 			.catch(err => {
 				dispatch(addMyItemsFailure(err.message));
@@ -87,10 +86,6 @@ export const GET_MY_ITEMS_ACTION = () => {
 	};
 };
 
-const addMyItemsSuccess = items => ({
-	type: GET_MY_ITEMS_SUCCESS,
-	payload: items
-});
 
 const addMyItemsStarted = () => ({
 	type: GET_MY_ITEMS_STARTED

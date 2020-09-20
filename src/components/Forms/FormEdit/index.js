@@ -2,8 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { PATH_ITEM_ACTION } from "../../../store/actions/formActions";
 import { Formik } from "formik";
-import * as Yup from "yup";
 import "./style.css";
+
+import * as Constants from '../constants'
 
 
 const FormEdit = ({ item }) => {
@@ -15,17 +16,13 @@ const FormEdit = ({ item }) => {
     <Formik
       initialValues={{ name: `${item.name}`, price: `${item.price}`, origin: `${item.origin}` }}
 
-      onSubmit={async (values) => {
-        await new Promise((resolve) => setTimeout(resolve, 0));
+      onSubmit={(values) => {
         dispatch(PATH_ITEM_ACTION(values, id));
       }}
 
 
-      validationSchema={Yup.object().shape({
-        name: Yup.string().trim('name should not have spaces at start and end of string').strict(true).min(3).max(20).required("Required"),
-        price: Yup.number().typeError('price must be a positive number').integer().positive().required("Required"),
-        origin: Yup.string().trim().strict(true).required("Required")
-      })}
+      validationSchema={Constants.validationSchema}
+
     >
 
       {(props) => {

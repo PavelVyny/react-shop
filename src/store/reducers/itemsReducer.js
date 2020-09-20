@@ -1,14 +1,11 @@
 import {
 	GET_ITEMS_SUCCESS,
-	GET_MY_ITEMS_SUCCESS,
 	GET_ITEM_SUCCESS,
 	ADD_ITEM,
 	INCREMENT_ITEM,
 	DECREMENT_ITEM,
 	REMOVE_ITEM,
 	GET_ORIGINS_SUCCESS,
-	LOAD_FILTRED_PRODUCTS_SUCCESS,
-	LOAD_MY_FILTRED_PRODUCTS_SUCCESS,
 	SET_SELECTED_COUNTRY,
 	SET_MAX_MIN_PRICE
 } from "../actions/Types";
@@ -28,9 +25,6 @@ export default function (state = initialState, action) {
 		case GET_ITEMS_SUCCESS:
 			return { ...state, items: action.payload };
 
-		case GET_MY_ITEMS_SUCCESS:
-			return { ...state, items: action.payload };
-
 		case GET_ITEM_SUCCESS:
 			return { ...state, curentItem: action.payload };
 
@@ -45,13 +39,6 @@ export default function (state = initialState, action) {
 				...state,
 				cartList: increment(state, action.payload),
 			};
-
-
-		case LOAD_FILTRED_PRODUCTS_SUCCESS:
-			return { ...state, items: action.payload }
-
-		case LOAD_MY_FILTRED_PRODUCTS_SUCCESS:
-			return { ...state, items: action.payload }
 
 		case SET_SELECTED_COUNTRY:
 			return { ...state, selectedCountry: action.payload }
