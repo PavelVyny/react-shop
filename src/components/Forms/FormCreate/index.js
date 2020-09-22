@@ -6,7 +6,6 @@ import "./style.css";
 
 import * as Constants from '../constants'
 
-console.log(Constants.validationSchema)
 const FormCreate = () => {
 
   const dispatch = useDispatch();

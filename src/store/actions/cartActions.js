@@ -68,7 +68,7 @@ export const GET_MY_ITEMS_ACTION = () => {
 	return dispatch => {
 		dispatch(addMyItemsStarted());
 		axios
-			.get(`${config.apiUrl}/products?perPage=200&editable=true`,
+			.get(`${config.apiUrl}/products?perPage=20&editable=true`,
 			{
 				headers: {
 					'Authorization': config.token
@@ -100,13 +100,14 @@ const addMyItemsFailure = error => ({
 
 
 
-export const GET_ITEMS_ACTION = () => {
+export const GET_ITEMS_ACTION = (pageSize, page) => {
 	return dispatch => {
 		dispatch(addItemsStarted());
 		axios
-			.get(`${config.apiUrl}/products?perPage=200`)
+			.get(`${config.apiUrl}/products?page=${page}&perPage=${pageSize}`)
 			.then(res => {
-				dispatch(addItemsSuccess(res.data.items));
+				dispatch(addItemsSuccess(res.data));
+				console.log(res.data)
 			})
 			.catch(err => {
 				dispatch(addItemsFailure(err.message));
@@ -115,9 +116,9 @@ export const GET_ITEMS_ACTION = () => {
 	};
 };
 
-const addItemsSuccess = items => ({
+const addItemsSuccess = data => ({
 	type: GET_ITEMS_SUCCESS,
-	payload: items
+	payload: data
 });
 
 const addItemsStarted = () => ({

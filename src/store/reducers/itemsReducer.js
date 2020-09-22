@@ -12,6 +12,9 @@ import {
 import { add, decrement, increment, remove } from "../../utils";
 
 const initialState = {
+	pageSize: 6,
+	pages: 10,
+	page: 1,
 	items: [],
 	curentItem: {},
 	cartList: [],
@@ -23,7 +26,7 @@ const initialState = {
 export default function (state = initialState, action) {
 	switch (action.type) {
 		case GET_ITEMS_SUCCESS:
-			return { ...state, items: action.payload };
+			return { ...state, items: action.payload.items, page: action.payload.page };
 
 		case GET_ITEM_SUCCESS:
 			return { ...state, curentItem: action.payload };

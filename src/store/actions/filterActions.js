@@ -90,7 +90,6 @@ export const GET_MY_FILTRED_PRODUCTS = (selectedCountry = [''],price=[0,3000]) =
 				'Authorization': config.token
 			},
 		}
-		
 		)
 		.then(res => {
 			dispatch(addMyProductsFiltredSuccess(res.data.items));
