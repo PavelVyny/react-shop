@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { Container } from 'react-bootstrap';
 
 import Home from './pages/Home';
+import MyProducts from './pages/MyProducts';
 import Cart from './pages/Cart';
 import ProductItem from './pages/ProductItem';
 import NotFound from './pages/NotFound';
@@ -21,6 +22,7 @@ const App = () => {
 						<Switch>
 							<Route exact path='/' component={Home} />
 							<Route path='/cart' component={Cart} />
+							<Route path='/my-products' component={MyProducts} />
 							<Route path='/product/:id' component={ProductItem} />
 							<Route component={NotFound} />
 						</Switch>

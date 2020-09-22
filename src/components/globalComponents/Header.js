@@ -5,19 +5,23 @@ import { FaShoppingCart } from "react-icons/fa";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
+import Modal from "../../components/Modal"
+
 import { getTotals } from '../../utils';
 
 
 const Header = () => {
-
 	const cart = useSelector((state) => state.products.cartList);
-
 	return (
 		<>
 			<Navbar bg="light" expand="lg" sticky="top">
 				<Navbar.Brand as={NavLink} to="/">
 					Y.school store
-        </Navbar.Brand>
+        		</Navbar.Brand>
+				<Modal form="FormCreate" />
+				<Nav.Link as={NavLink} to="/my-products" className="shop__cart position-relative">
+					My products
+				</Nav.Link>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse className="justify-content-end">
 

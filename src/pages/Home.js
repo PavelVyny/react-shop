@@ -9,8 +9,8 @@ const Home = () => {
 		<>
 			<OriginSelect />
 			<PriceSlider />
-			<Title title="All Products" />
-			<ProductItems />
+			<Title title="All products" />
+			<ProductItems isOnlyMyProducts="false" />
 		</>
 	);
 };

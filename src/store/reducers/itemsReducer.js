@@ -6,7 +6,6 @@ import {
 	DECREMENT_ITEM,
 	REMOVE_ITEM,
 	GET_ORIGINS_SUCCESS,
-	LOAD_FILTRED_ORIGINS_SUCCESS,
 	SET_SELECTED_COUNTRY,
 	SET_MAX_MIN_PRICE
 } from "../actions/Types";
@@ -16,9 +15,9 @@ const initialState = {
 	items: [],
 	curentItem: {},
 	cartList: [],
-	countryList:[],
-	selectedCountry:[],
-	rangePrice:[],
+	countryList: [],
+	selectedCountry: [],
+	rangePrice: [],
 };
 
 export default function (state = initialState, action) {
@@ -32,27 +31,27 @@ export default function (state = initialState, action) {
 		case ADD_ITEM: {
 			return { ...state, cartList: add(state, action.payload.id) };
 		}
-		case GET_ORIGINS_SUCCESS : {
-			return {...state, countryList: action.payload};
+		case GET_ORIGINS_SUCCESS: {
+			return { ...state, countryList: action.payload };
 		}
 		case INCREMENT_ITEM:
 			return {
 				...state,
 				cartList: increment(state, action.payload),
 			};
-		case LOAD_FILTRED_ORIGINS_SUCCESS: 
 
-			return {...state, items: action.payload}
-		case SET_SELECTED_COUNTRY: 
+		case SET_SELECTED_COUNTRY:
+			return { ...state, selectedCountry: action.payload }
 
-			return {...state, selectedCountry: action.payload}
 		case SET_MAX_MIN_PRICE:
-			return {...state, rangePrice: action.payload} 
+			return { ...state, rangePrice: action.payload }
+
 		case DECREMENT_ITEM:
 			return {
 				...state,
 				cartList: decrement(state, action.payload),
 			};
+			
 		case REMOVE_ITEM:
 			return {
 				...state,
