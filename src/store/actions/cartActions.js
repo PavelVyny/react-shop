@@ -5,6 +5,8 @@ import {
 	GET_ITEMS_SUCCESS,
 	GET_ITEMS_FAILURE,
 	GET_ITEMS_STARTED,
+	PUT_ITEMS,
+	LOAD_ITEMS,
 	GET_MY_ITEMS_FAILURE,
 	GET_MY_ITEMS_STARTED,
 	GET_ITEM_SUCCESS,
@@ -99,6 +101,18 @@ const addMyItemsFailure = error => ({
 });
 
 
+export const PUT_ITEMS_ACTION = (data) => {
+	return {
+		type: PUT_ITEMS,
+		payload: data
+	}
+}
+
+export const LOAD_ITEMS_ACTION = () => {
+	return {
+		type: LOAD_ITEMS
+	}
+}
 
 export const GET_ITEMS_ACTION = (pageSize, page) => {
 	return dispatch => {
