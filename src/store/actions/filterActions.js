@@ -38,16 +38,16 @@ export const GET_FILTRED_PRODUCTS = (selectedCountry = [''],price=[0,3000]) => d
 	axios
 		.get(`${config.apiUrl}/products?origins=${selectedCountry}&minPrice=${price[0]}&maxPrice=${price[1]}`)
 		.then(res => {
-			dispatch(addItemsForOriginsSuccess(res.data.items));
+			dispatch(addItemsForOriginsSuccess(res.data));
 		})
 		.catch(err => {
 			dispatch(addOriginsFailure(err.message));
 		});	
 }
 
-const addItemsForOriginsSuccess = items => ({
+const addItemsForOriginsSuccess = data => ({
 	type: GET_ITEMS_SUCCESS,
-	payload: items
+	payload: data
 });
 
 const addOriginsSuccess = origins => ({
@@ -92,7 +92,7 @@ export const GET_MY_FILTRED_PRODUCTS = (selectedCountry = [''],price=[0,3000]) =
 		}
 		)
 		.then(res => {
-			dispatch(addMyProductsFiltredSuccess(res.data.items));
+			dispatch(addMyProductsFiltredSuccess(res.data));
 		})
 		.catch(err => {
 			dispatch(addMyIProductsFiltredFailure(err.message));
@@ -103,9 +103,9 @@ const startMyProductsFilter = () => ({
 	type: START_MY_FILTRED_PRODUCTS,
 });
 
-const addMyProductsFiltredSuccess = items => ({
+const addMyProductsFiltredSuccess = data => ({
 	type: GET_ITEMS_SUCCESS,
-	payload: items
+	payload: data
 });
 
 const addMyIProductsFiltredFailure = error => ({

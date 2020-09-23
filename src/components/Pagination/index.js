@@ -23,7 +23,7 @@ const PaginationComponent = () => {
 	};
 
 	return (
-		<Pagination>
+		<Pagination className="justify-content-md-center">
 			<Pagination.Prev 
 				disabled={(currentPage === 1 ? true : false)}
 				onClick={() => toPrevPage()} />
