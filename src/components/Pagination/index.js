@@ -1,7 +1,7 @@
 import React from "react";
 import { Pagination, PageItem } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_ITEMS_ACTION } from "../../store/actions/cartActions";
+import { LOAD_ITEMS_ACTION } from "../../store/actions/sagaActions";
 
 
 
@@ -13,13 +13,13 @@ const PaginationComponent = () => {
 
 	const dispatch = useDispatch();
 	const toPage = (page) => {
-		dispatch(GET_ITEMS_ACTION(pageSize, page));
+		dispatch(LOAD_ITEMS_ACTION(pageSize, page));
 	};
 	const toPrevPage = () => {
-		dispatch(GET_ITEMS_ACTION(pageSize, currentPage-1));
+		dispatch(LOAD_ITEMS_ACTION(pageSize, currentPage-1));
 	};
 	const toNextPage = () => {
-		dispatch(GET_ITEMS_ACTION(pageSize, currentPage+1));
+		dispatch(LOAD_ITEMS_ACTION(pageSize, currentPage+1));
 	};
 
 	return (

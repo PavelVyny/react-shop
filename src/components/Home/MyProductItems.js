@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Item from "../UI/Card";
 import Pagination from "../Pagination"
-import { GET_MY_ITEMS_ACTION } from "../../store/actions/cartActions";
+import { LOAD_MY_ITEMS_ACTION } from "../../store/actions/sagaActions";
 import { GET_ORIGINS_ACTION } from "../../store/actions/filterActions";
 
 const MyProductItems = ({ isOnlyMyProducts }) => {
@@ -15,7 +15,7 @@ const MyProductItems = ({ isOnlyMyProducts }) => {
 
 	useEffect(() => {
 		dispatch(
-			GET_MY_ITEMS_ACTION(pageSize, page),
+			LOAD_MY_ITEMS_ACTION(pageSize, page),
 			dispatch(GET_ORIGINS_ACTION())
 		);
 	}, [dispatch, pageSize, page])
