@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { CREATE_ITEM_ACTION } from "../../../store/actions/cartActions";
+import { LOAD_NEW_ITEM_ACTION } from "../../../store/actions/sagaActions";
 import { Formik } from "formik";
 import "./style.css";
 
@@ -16,7 +16,7 @@ const FormCreate = () => {
       initialValues={{ name: "", price: "", origin: "" }}
 
       onSubmit={(values) => {
-        dispatch(CREATE_ITEM_ACTION(values));
+        dispatch(LOAD_NEW_ITEM_ACTION(values));
       }}
 
 

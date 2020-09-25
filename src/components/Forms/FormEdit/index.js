@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { PATH_ITEM_ACTION } from "../../../store/actions/formActions";
+import { LOAD_EDITED_ITEM_ACTION } from "../../../store/actions/sagaActions";
 import { Formik } from "formik";
 import "./style.css";
 
@@ -17,7 +17,7 @@ const FormEdit = ({ item }) => {
       initialValues={{ name: `${item.name}`, price: `${item.price}`, origin: `${item.origin}` }}
 
       onSubmit={(values) => {
-        dispatch(PATH_ITEM_ACTION(values, id));
+        dispatch(LOAD_EDITED_ITEM_ACTION(values, id));
       }}
 
 

@@ -1,12 +1,12 @@
 import {
 	GET_ITEMS_SUCCESS,
-	GET_ITEM_SUCCESS,
+	PUT_ITEM,
 	PUT_ITEMS,
 	ADD_ITEM,
 	INCREMENT_ITEM,
 	DECREMENT_ITEM,
 	REMOVE_ITEM,
-	GET_ORIGINS_SUCCESS,
+	PUT_ORIGIN,
 	SET_SELECTED_COUNTRY,
 	SET_MAX_MIN_PRICE,
 } from "../actions/Types";
@@ -32,15 +32,17 @@ export default function (state = initialState, action) {
 		case PUT_ITEMS:
 			return { ...state, items: action.payload.items, page: action.payload.page };
 
-		case GET_ITEM_SUCCESS:
+		case PUT_ITEM:
 			return { ...state, curentItem: action.payload };
 
 		case ADD_ITEM: {
 			return { ...state, cartList: add(state, action.payload.id) };
 		}
-		case GET_ORIGINS_SUCCESS: {
+
+		case PUT_ORIGIN: {
 			return { ...state, countryList: action.payload };
 		}
+
 		case INCREMENT_ITEM:
 			return {
 				...state,

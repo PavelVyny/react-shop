@@ -6,14 +6,14 @@ import { Col } from "react-bootstrap";
 import styled from "styled-components";
 
 import Item from "../components/UI/Card";
-import { GET_ITEM_ACTION } from "../store/actions/cartActions";
+import { LOAD_ITEM_ACTION } from "../store/actions/sagaActions";
 
 const ProductItem = () => {
 	const item = useSelector((state) => state.products.curentItem);
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(GET_ITEM_ACTION(id));
+		dispatch(LOAD_ITEM_ACTION(id));
 	}, [id, dispatch]);
 
 	return (

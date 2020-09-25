@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Item from "../UI/Card";
 import Pagination from "../Pagination";
-import { LOAD_ITEMS_ACTION } from "../../store/actions/sagaActions";
-import { GET_ORIGINS_ACTION } from "../../store/actions/filterActions";
+import { LOAD_ITEMS_ACTION, LOAD_ORIGIN_ACTION } from "../../store/actions/sagaActions";
+
 
 const ProductItems = ({ isOnlyMyProducts }) => {
 	const items = useSelector((state) => state.products.items);
@@ -17,7 +17,7 @@ const ProductItems = ({ isOnlyMyProducts }) => {
 	useEffect(() => {
 		dispatch(
 			LOAD_ITEMS_ACTION(pageSize, page),
-			dispatch(GET_ORIGINS_ACTION()),
+			dispatch(LOAD_ORIGIN_ACTION()),
 		);
 	}, [dispatch, pageSize, page])
 
@@ -33,7 +33,7 @@ const ProductItems = ({ isOnlyMyProducts }) => {
 						<h1>Loading</h1>
 					)}
 			</Row>
-			<Pagination />
+			<Pagination curPage="all-products" />
 		</>
 	);
 };
