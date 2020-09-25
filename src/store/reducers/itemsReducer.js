@@ -1,5 +1,4 @@
 import {
-	GET_ITEMS_SUCCESS,
 	PUT_ITEM,
 	PUT_ITEMS,
 	ADD_ITEM,
@@ -26,8 +25,6 @@ const initialState = {
 
 export default function (state = initialState, action) {
 	switch (action.type) {
-		case GET_ITEMS_SUCCESS:
-			return { ...state, items: action.payload.items, page: action.payload.page };
 
 		case PUT_ITEMS:
 			return { ...state, items: action.payload.items, page: action.payload.page };
