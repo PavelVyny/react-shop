@@ -19,7 +19,7 @@ const initialState = {
 	curentItem: {},
 	cartList: [],
 	countryList: [],
-	selectedCountry: [],
+	selectedCountry: ["usa", "europe", "asia", "africa"],
 	rangePrice: [0, 3000],
 };
 

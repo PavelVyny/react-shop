@@ -4,7 +4,6 @@ import { setMaxMinPrice } from "../../store/actions/filterActions";
 import { LOAD_FILTERS_ACTION } from "../../store/actions/sagaActions";
 import Slider from '@material-ui/core/Slider';
 import Tooltip from '@material-ui/core/Tooltip';
-
 import { useHistory, useParams } from "react-router-dom";
 
 
@@ -21,7 +20,21 @@ function ValueLabelComponent(props) {
 const PriceSlider = () => {
   const itemsCountry = useSelector((state) => state.products.selectedCountry);
   const dispatch = useDispatch();
+
+  let history = useHistory();
+  const { arr, urlRangePrice } = useParams();
+
+  if(!urlRangePrice === false) {
+    dispatch(LOAD_FILTERS_ACTION(arr, urlRangePrice.split(',')))
+  }
+
+
+
   const handleChangeSlider = (event, valuePrice) => {
+    valuePrice ? history.push(`/filters&origin=${itemsCountry}&priceRange=${valuePrice}`) :
+    history.push('/')
+
+
     dispatch(setMaxMinPrice(valuePrice));
     dispatch(LOAD_FILTERS_ACTION(itemsCountry, valuePrice));
   }
