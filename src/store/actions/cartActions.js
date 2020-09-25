@@ -6,8 +6,6 @@ import {
 } from "./Types";
 
 
-
-
 export const ADD_ITEM_ACTION = (item) => (dispatch) => {
 	dispatch({
 		type: ADD_ITEM,

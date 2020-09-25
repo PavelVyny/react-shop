@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { GET_FILTRED_PRODUCTS, setSelectedCountry } from "../../store/actions/filterActions";
+import { setSelectedCountry } from "../../store/actions/filterActions";
+import { LOAD_FILTERS_ACTION } from "../../store/actions/sagaActions";
 import Select from 'react-select';
 
 
@@ -16,7 +17,7 @@ const OriginSelect = () => {
       })
     }
     dispatch(setSelectedCountry(arr))
-    dispatch(GET_FILTRED_PRODUCTS(arr, rangePrice));
+    dispatch(LOAD_FILTERS_ACTION(arr, rangePrice));
   }
 
   return (

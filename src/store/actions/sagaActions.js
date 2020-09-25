@@ -10,7 +10,8 @@ import {
 	PUT_EDITED_ITEM,
 	LOAD_ORIGIN,
 	PUT_ORIGIN,
-	
+	LOAD_FILTERS,
+	LOAD_MY_FILTERS
 
 
 } from "./Types";
@@ -94,5 +95,19 @@ export const PUT_ORIGIN_ACTION = origins => ({
 });
 
 
+export const LOAD_FILTERS_ACTION = (selectedCountry, price) => ({
+	type: LOAD_FILTERS,
+	selectedCountry,
+	price
+})
 
+export const LOAD_MY_FILTERS_ACTION = (selectedCountry, price) => ({
+	type: LOAD_MY_FILTERS,
+	selectedCountry,
+	price
+})
 
+export const PUT_FILTRED_ITEMS_ACTION = (data) => ({
+	type: PUT_ITEMS,
+	payload: data
+})

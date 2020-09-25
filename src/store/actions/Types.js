@@ -15,6 +15,9 @@ export const PUT_EDITED_ITEM = "PUT_EDITED_ITEM";
 export const LOAD_ORIGIN = "LOAD_ORIGIN";
 export const PUT_ORIGIN = "PUT_ORIGIN";
 
+export const LOAD_FILTERS = "LOAD_FILTERS";
+export const LOAD_MY_FILTERS = "LOAD_MY_FILTERS";
+
 
 //default types
 export const GET_ITEMS_SUCCESS = "GET_ITEMS_SUCCESS";

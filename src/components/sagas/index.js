@@ -9,6 +9,7 @@ import {
 	PUT_ITEM_ACTION,
 	PUT_EDITED_ITEM_ACTION,
 	PUT_ORIGIN_ACTION,
+	PUT_FILTRED_ITEMS_ACTION,
 } from "../../store/actions/sagaActions";
 
 import {
@@ -18,6 +19,8 @@ import {
 	LOAD_NEW_ITEM,
 	LOAD_EDITED_ITEM,
 	LOAD_ORIGIN,
+	LOAD_FILTERS,
+	LOAD_MY_FILTERS,
 } from '../../store/actions/Types'
 
 export default function* rootSaga() {
@@ -27,6 +30,8 @@ export default function* rootSaga() {
 	yield fork(watchLoadItem)
 	yield fork(watchEditItem)
 	yield fork(watchLoadOrigin)
+	yield fork(watchLoadFilters)
+	yield fork(watchLoadMyFilters)
 
 }
 
@@ -184,4 +189,52 @@ function* workerLoadOrigin() {
 
 export function* watchLoadOrigin() {
 	yield takeEvery(LOAD_ORIGIN, workerLoadOrigin)
+}
+
+
+
+
+// get filtred products
+
+function fetchFilters(selectedCountry = [''], price = [0, 3000]) {
+	return axios
+		.get(`${config.apiUrl}/products?origins=${selectedCountry}&minPrice=${price[0]}&maxPrice=${price[1]}`)
+}
+
+function* workerLoadFilters(action) {
+	const response = yield call(fetchFilters, action.selectedCountry, action.price)
+	const data = response.data;
+
+	yield put(PUT_FILTRED_ITEMS_ACTION(data))
+}
+
+export function* watchLoadFilters() {
+	yield takeEvery(LOAD_FILTERS, workerLoadFilters)
+}
+
+
+
+
+// get my filtred products
+
+function fetchMyFilters(selectedCountry = [''], price = [0, 3000]) {
+	return axios
+		.get(`${config.apiUrl}/products?origins=${selectedCountry}&minPrice=${price[0]}&maxPrice=${price[1]}&editable=true`,
+			{
+				headers: {
+					'Authorization': config.token
+				},
+			}
+		)
+}
+
+function* workerLoadMyFilters(action) {
+	const response = yield call(fetchMyFilters, action.selectedCountry, action.price)
+	const data = response.data;
+
+	yield put(PUT_FILTRED_ITEMS_ACTION(data))
+}
+
+export function* watchLoadMyFilters() {
+	yield takeEvery(LOAD_MY_FILTERS, workerLoadMyFilters)
 }
