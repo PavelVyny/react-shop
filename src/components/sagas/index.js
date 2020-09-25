@@ -1,4 +1,4 @@
-import { takeEvery, put, call, fork } from 'redux-saga/effects'
+import { takeEvery, put, call, fork, debounce } from 'redux-saga/effects'
 import axios from 'axios'
 import config from '../../config'
 
@@ -209,7 +209,7 @@ function* workerLoadFilters(action) {
 }
 
 export function* watchLoadFilters() {
-	yield takeEvery(LOAD_FILTERS, workerLoadFilters)
+	yield debounce(1000, LOAD_FILTERS, workerLoadFilters)
 }
 
 
@@ -236,5 +236,5 @@ function* workerLoadMyFilters(action) {
 }
 
 export function* watchLoadMyFilters() {
-	yield takeEvery(LOAD_MY_FILTERS, workerLoadMyFilters)
+	yield debounce(1000, LOAD_MY_FILTERS, workerLoadMyFilters)
 }

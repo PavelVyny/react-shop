@@ -5,6 +5,9 @@ import { LOAD_FILTERS_ACTION } from "../../store/actions/sagaActions";
 import Slider from '@material-ui/core/Slider';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import { useHistory, useParams } from "react-router-dom";
+
+
 function ValueLabelComponent(props) {
   const { children, open, value } = props;
 

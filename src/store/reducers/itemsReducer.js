@@ -12,7 +12,7 @@ import {
 import { add, decrement, increment, remove } from "../../utils";
 
 const initialState = {
-	pageSize: 6,
+	pageSize: 10,
 	pages: 10,
 	page: 1,
 	items: [],
@@ -20,7 +20,7 @@ const initialState = {
 	cartList: [],
 	countryList: [],
 	selectedCountry: [],
-	rangePrice: [],
+	rangePrice: [0, 3000],
 };
 
 export default function (state = initialState, action) {
