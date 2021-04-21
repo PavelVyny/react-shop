@@ -21,6 +21,7 @@ const App = () => {
 					<Container>
 						<Switch>
 							<Route exact path='/' component={Home} />
+							<Route path='/filters&origin=:arr&priceRange=:urlRangePrice' component={Home} />
 							<Route path='/cart' component={Cart} />
 							<Route path='/my-products' component={MyProducts} />
 							<Route path='/product/:id' component={ProductItem} />

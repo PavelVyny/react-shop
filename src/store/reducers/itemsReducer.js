@@ -1,39 +1,45 @@
 import {
-	GET_ITEMS_SUCCESS,
-	GET_ITEM_SUCCESS,
+	PUT_ITEM,
+	PUT_ITEMS,
 	ADD_ITEM,
 	INCREMENT_ITEM,
 	DECREMENT_ITEM,
 	REMOVE_ITEM,
-	GET_ORIGINS_SUCCESS,
+	PUT_ORIGIN,
 	SET_SELECTED_COUNTRY,
-	SET_MAX_MIN_PRICE
+	SET_MAX_MIN_PRICE,
 } from "../actions/Types";
 import { add, decrement, increment, remove } from "../../utils";
 
 const initialState = {
+	pageSize: 10,
+	pages: 10,
+	page: 1,
 	items: [],
 	curentItem: {},
 	cartList: [],
 	countryList: [],
-	selectedCountry: [],
-	rangePrice: [],
+	selectedCountry: ["usa", "europe", "asia", "africa"],
+	rangePrice: [0, 3000],
 };
 
 export default function (state = initialState, action) {
 	switch (action.type) {
-		case GET_ITEMS_SUCCESS:
-			return { ...state, items: action.payload };
 
-		case GET_ITEM_SUCCESS:
+		case PUT_ITEMS:
+			return { ...state, items: action.payload.items, page: action.payload.page };
+
+		case PUT_ITEM:
 			return { ...state, curentItem: action.payload };
 
 		case ADD_ITEM: {
 			return { ...state, cartList: add(state, action.payload.id) };
 		}
-		case GET_ORIGINS_SUCCESS: {
+
+		case PUT_ORIGIN: {
 			return { ...state, countryList: action.payload };
 		}
+
 		case INCREMENT_ITEM:
 			return {
 				...state,
@@ -51,7 +57,7 @@ export default function (state = initialState, action) {
 				...state,
 				cartList: decrement(state, action.payload),
 			};
-			
+
 		case REMOVE_ITEM:
 			return {
 				...state,
